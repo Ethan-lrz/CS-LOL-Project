@@ -1,0 +1,1090 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="CSLOL.MainWindow"
+        Title="LoL Champion Builder"
+        Width="900"
+        Height="700"
+        WindowStartupLocation="CenterScreen"
+        CanResize="True"
+        WindowState="Maximized">
+    <Grid>
+        <Grid x:Name="Page1">
+            <Grid.Background>
+                <ImageBrush Source="/Assets/fond.jpg" Stretch="UniformToFill" Opacity="0.3"/>
+            </Grid.Background>
+            <Border MaxWidth="500" MaxHeight="600"
+                    Background="#16213e"
+                    BorderBrush="#0f3460"
+                    BorderThickness="2"
+                    CornerRadius="10"
+                    BoxShadow="0 10 30 5 #000000"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center">
+                
+                <StackPanel Margin="40">
+                    <Border Background="#0f3460"
+                            Padding="20"
+                            CornerRadius="8"
+                            Margin="0 0 0 30">
+                        <StackPanel>
+                            <TextBlock Text="⚔️" 
+                                       FontSize="48" 
+                                       HorizontalAlignment="Center"
+                                       Margin="0 0 0 10"/>
+                            <TextBlock Text="LoL Champion Builder"
+                                       FontSize="28"
+                                       FontWeight="Bold"
+                                       Foreground="#e94560"
+                                       HorizontalAlignment="Center"/>
+                            <TextBlock Text="Créez votre champion personnalisé"
+                                       FontSize="14"
+                                       Foreground="#a8dadc"
+                                       HorizontalAlignment="Center"
+                                       Margin="0 5 0 0"/>
+                        </StackPanel>
+                    </Border>
+
+                    <Border Background="#0f3460"
+                            Width="80" Height="80"
+                            CornerRadius="40"
+                            HorizontalAlignment="Center"
+                            Margin="0 0 0 30">
+                        <TextBlock Text="👤" 
+                                   FontSize="40"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"/>
+                    </Border>
+
+                    <TextBlock Text="Entrez votre pseudo d'invocateur"
+                               FontSize="16"
+                               FontWeight="SemiBold"
+                               Foreground="#a8dadc"
+                               Margin="0 0 0 10"/>
+
+                    <TextBox x:Name="PseudoInput"
+                             Watermark="Ex: xX_Sup2Vinci_Xx"
+                             FontSize="16"
+                             Padding="12"
+                             Background="#1a1a2e"
+                             BorderBrush="#0f3460"
+                             BorderThickness="2"
+                             CornerRadius="6"
+                             Foreground="White"
+                             Margin="0 0 0 20"/>
+
+                    <Button x:Name="ContinueButton"
+                            Content="Continuer"
+                            Click="OnContinueClick"
+                            FontSize="18"
+                            FontWeight="Bold"
+                            Padding="0 12"
+                            Background="#e94560"
+                            Foreground="White"
+                            BorderThickness="0"
+                            CornerRadius="6"
+                            HorizontalAlignment="Stretch"
+                            HorizontalContentAlignment="Center"
+                            Cursor="Hand">
+                        <Button.Styles>
+                            <Style Selector="Button:pointerover /template/ ContentPresenter">
+                                <Setter Property="Background" Value="#d63447"/>
+                            </Style>
+                        </Button.Styles>
+                    </Button>
+
+                    <TextBlock Text="Bienvenue sur Runeterra, invocateur !"
+                               FontSize="12"
+                               Foreground="#666"
+                               HorizontalAlignment="Center"
+                               Margin="0 20 0 0"/>
+                </StackPanel>
+            </Border>
+        </Grid>
+
+        <Grid x:Name="Page2" IsVisible="False">
+            <Grid.Background>
+                <ImageBrush Source="/Assets/fond.jpg" Stretch="UniformToFill" Opacity="0.3"/>
+            </Grid.Background>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="0">
+                <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="Choisissez votre champion"
+                               FontSize="32"
+                               FontWeight="Bold"
+                               Foreground="#e94560"
+                               HorizontalAlignment="Center"
+                               Margin="0 0 0 50"/>
+
+                    <Grid RowDefinitions="Auto,Auto" 
+                          ColumnDefinitions="Auto,Auto,Auto,Auto,Auto" 
+                          HorizontalAlignment="Center"
+                          RowSpacing="20"
+                          ColumnSpacing="20">
+                        
+                        <Button x:Name="BtnGaren" Grid.Row="0" Grid.Column="0" Click="OnChampionClick" Tag="Garen"
+                                Background="Transparent" BorderThickness="0" Padding="10" Cursor="Hand">
+                            <StackPanel>
+                                <Border Width="170" Height="300" CornerRadius="10" ClipToBounds="True"
+                                        BorderBrush="#0f3460" BorderThickness="3">
+                                    <Image Source="/Assets/Garen.jpg" Stretch="Fill"/>
+                                </Border>
+                                <TextBlock Text="Garen" FontSize="20" FontWeight="Bold" 
+                                           Foreground="White" HorizontalAlignment="Center" Margin="0 10 0 0"/>
+                                <TextBlock Text="Humain" FontSize="15" 
+                                           Foreground="#a8dadc" HorizontalAlignment="Center"/>
+                            </StackPanel>
+                        </Button>
+
+                        <Button x:Name="BtnTeemo" Grid.Row="0" Grid.Column="1" Click="OnChampionClick" Tag="Teemo"
+                                Background="Transparent" BorderThickness="0" Padding="10" Cursor="Hand">
+                            <StackPanel>
+                                <Border Width="170" Height="300" CornerRadius="10" ClipToBounds="True"
+                                        BorderBrush="#0f3460" BorderThickness="3">
+                                    <Image Source="/Assets/Teemo.jpg" Stretch="Fill"/>
+                                </Border>
+                                <TextBlock Text="Teemo" FontSize="20" FontWeight="Bold" 
+                                           Foreground="White" HorizontalAlignment="Center" Margin="0 10 0 0"/>
+                                <TextBlock Text="Yordle" FontSize="15" 
+                                           Foreground="#a8dadc" HorizontalAlignment="Center"/>
+                            </StackPanel>
+                        </Button>
+
+                        <Button x:Name="BtnAhri" Grid.Row="0" Grid.Column="2" Click="OnChampionClick" Tag="Ahri"
+                                Background="Transparent" BorderThickness="0" Padding="10" Cursor="Hand">
+                            <StackPanel>
+                                <Border Width="170" Height="300" CornerRadius="10" ClipToBounds="True"
+                                        BorderBrush="#0f3460" BorderThickness="3">
+                                    <Image Source="/Assets/Ahri.jpg" Stretch="Fill"/>
+                                </Border>
+                                <TextBlock Text="Ahri" FontSize="20" FontWeight="Bold" 
+                                           Foreground="White" HorizontalAlignment="Center" Margin="0 10 0 0"/>
+                                <TextBlock Text="Vastaya" FontSize="15" 
+                                           Foreground="#a8dadc" HorizontalAlignment="Center"/>
+                            </StackPanel>
+                        </Button>
+
+                        <Button x:Name="BtnLux" Grid.Row="0" Grid.Column="3" Click="OnChampionClick" Tag="Lux"
+                                Background="Transparent" BorderThickness="0" Padding="10" Cursor="Hand">
+                            <StackPanel>
+                                <Border Width="170" Height="300" CornerRadius="10" ClipToBounds="True"
+                                        BorderBrush="#0f3460" BorderThickness="3">
+                                    <Image Source="/Assets/Lux.jpg" Stretch="Fill"/>
+                                </Border>
+                                <TextBlock Text="Lux" FontSize="20" FontWeight="Bold" 
+                                           Foreground="White" HorizontalAlignment="Center" Margin="0 10 0 0"/>
+                                <TextBlock Text="Humain" FontSize="15" 
+                                           Foreground="#a8dadc" HorizontalAlignment="Center"/>
+                            </StackPanel>
+                        </Button>
+
+                        <Button x:Name="BtnKhaZix" Grid.Row="0" Grid.Column="4" Click="OnChampionClick" Tag="KhaZix"
+                                Background="Transparent" BorderThickness="0" Padding="10" Cursor="Hand">
+                            <StackPanel>
+                                <Border Width="170" Height="300" CornerRadius="10" ClipToBounds="True"
+                                        BorderBrush="#0f3460" BorderThickness="3">
+                                    <Image Source="/Assets/Khazix.jpg" Stretch="Fill"/>
+                                </Border>
+                                <TextBlock Text="Kha'Zix" FontSize="20" FontWeight="Bold" 
+                                           Foreground="White" HorizontalAlignment="Center" Margin="0 10 0 0"/>
+                                <TextBlock Text="Néant" FontSize="15" 
+                                           Foreground="#a8dadc" HorizontalAlignment="Center"/>
+                            </StackPanel>
+                        </Button>
+
+                        <Button x:Name="BtnThresh" Grid.Row="1" Grid.Column="0" Click="OnChampionClick" Tag="Thresh"
+                                Background="Transparent" BorderThickness="0" Padding="10" Cursor="Hand">
+                            <StackPanel>
+                                <Border Width="170" Height="300" CornerRadius="10" ClipToBounds="True"
+                                        BorderBrush="#0f3460" BorderThickness="3">
+                                    <Image Source="/Assets/Thresh.jpg" Stretch="Fill"/>
+                                </Border>
+                                <TextBlock Text="Thresh" FontSize="20" FontWeight="Bold" 
+                                           Foreground="White" HorizontalAlignment="Center" Margin="0 10 0 0"/>
+                                <TextBlock Text="Mort-vivant" FontSize="15" 
+                                           Foreground="#a8dadc" HorizontalAlignment="Center"/>
+                            </StackPanel>
+                        </Button>
+
+                        <Button x:Name="BtnAurelionSol" Grid.Row="1" Grid.Column="1" Click="OnChampionClick" Tag="AurelionSol"
+                                Background="Transparent" BorderThickness="0" Padding="10" Cursor="Hand">
+                            <StackPanel>
+                                <Border Width="170" Height="300" CornerRadius="10" ClipToBounds="True"
+                                        BorderBrush="#0f3460" BorderThickness="3">
+                                    <Image Source="/Assets/AurelionSol.jpg" Stretch="Fill"/>
+                                </Border>
+                                <TextBlock Text="Aurelion Sol" FontSize="20" FontWeight="Bold" 
+                                           Foreground="White" HorizontalAlignment="Center" Margin="0 10 0 0"/>
+                                <TextBlock Text="Céleste" FontSize="15" 
+                                           Foreground="#a8dadc" HorizontalAlignment="Center"/>
+                            </StackPanel>
+                        </Button>
+
+                        <Button x:Name="BtnVeigar" Grid.Row="1" Grid.Column="2" Click="OnChampionClick" Tag="Veigar"
+                                Background="Transparent" BorderThickness="0" Padding="10" Cursor="Hand">
+                            <StackPanel>
+                                <Border Width="170" Height="300" CornerRadius="10" ClipToBounds="True"
+                                        BorderBrush="#0f3460" BorderThickness="3">
+                                    <Image Source="/Assets/Veigar.jpg" Stretch="Fill"/>
+                                </Border>
+                                <TextBlock Text="Veigar" FontSize="20" FontWeight="Bold" 
+                                           Foreground="White" HorizontalAlignment="Center" Margin="0 10 0 0"/>
+                                <TextBlock Text="Yordle" FontSize="15" 
+                                           Foreground="#a8dadc" HorizontalAlignment="Center"/>
+                            </StackPanel>
+                        </Button>
+
+                        <Button x:Name="BtnVelKoz" Grid.Row="1" Grid.Column="3" Click="OnChampionClick" Tag="VelKoz"
+                                Background="Transparent" BorderThickness="0" Padding="10" Cursor="Hand">
+                            <StackPanel>
+                                <Border Width="170" Height="300" CornerRadius="10" ClipToBounds="True"
+                                        BorderBrush="#0f3460" BorderThickness="3">
+                                    <Image Source="/Assets/Velkoz.jpg" Stretch="Fill"/>
+                                </Border>
+                                <TextBlock Text="Vel'Koz" FontSize="20" FontWeight="Bold" 
+                                           Foreground="White" HorizontalAlignment="Center" Margin="0 10 0 0"/>
+                                <TextBlock Text="Néant" FontSize="15" 
+                                           Foreground="#a8dadc" HorizontalAlignment="Center"/>
+                            </StackPanel>
+                        </Button>
+
+                        <Button x:Name="BtnMordekaiser" Grid.Row="1" Grid.Column="4" Click="OnChampionClick" Tag="Mordekaiser"
+                                Background="Transparent" BorderThickness="0" Padding="10" Cursor="Hand">
+                            <StackPanel>
+                                <Border Width="170" Height="300" CornerRadius="10" ClipToBounds="True"
+                                        BorderBrush="#0f3460" BorderThickness="3">
+                                    <Image Source="/Assets/Mordekaiser.jpg" Stretch="Fill"/>
+                                </Border>
+                                <TextBlock Text="Mordekaiser" FontSize="20" FontWeight="Bold" 
+                                           Foreground="White" HorizontalAlignment="Center" Margin="0 10 0 0"/>
+                                <TextBlock Text="Mort-vivant" FontSize="15" 
+                                           Foreground="#a8dadc" HorizontalAlignment="Center"/>
+                            </StackPanel>
+                        </Button>
+                    </Grid>
+                </StackPanel>
+            </Grid>
+
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="250"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <Border Grid.Row="0" Background="#0f3460" CornerRadius="10 10 0 0" 
+                        Margin="40 40 40 0" ClipToBounds="True">
+                    <Grid>
+                        <Image x:Name="TopChampionBanner" Stretch="UniformToFill"/>
+
+                        <StackPanel VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0 0 0 20">
+                            <TextBlock x:Name="TopChampionName" 
+                                       FontSize="32" 
+                                       FontWeight="Bold" 
+                                       Foreground="White" 
+                                       HorizontalAlignment="Center"
+                                       TextAlignment="Center">
+                                <TextBlock.Effect>
+                                    <DropShadowEffect BlurRadius="10" OffsetX="0" OffsetY="2" Color="Black" Opacity="0.8"/>
+                                </TextBlock.Effect>
+                            </TextBlock>
+                            <TextBlock x:Name="TopChampionRace" 
+                                       FontSize="18" 
+                                       Foreground="#a8dadc" 
+                                       HorizontalAlignment="Center"
+                                       TextAlignment="Center"
+                                       Margin="0 5 0 0">
+                                <TextBlock.Effect>
+                                    <DropShadowEffect BlurRadius="10" OffsetX="0" OffsetY="2" Color="Black" Opacity="0.8"/>
+                                </TextBlock.Effect>
+                            </TextBlock>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+
+                <Border Grid.Row="1" Background="#16213e" Margin="40 0 40 40" 
+                        CornerRadius="0 0 10 10" BorderBrush="#0f3460" BorderThickness="2">
+                    <Grid>
+                        <TextBlock x:Name="DefaultMessage"
+                                   Text="Sélectionnez un champion pour voir ses statistiques"
+                                   FontSize="16"
+                                   Foreground="#666"
+                                   TextWrapping="Wrap"
+                                   TextAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Center"
+                                   Margin="20"/>
+                        
+                        <StackPanel x:Name="StatsPanel" Margin="30 20 30 20" IsVisible="False">
+                            <TextBlock Text="Statistiques de base"
+                                       FontSize="22" FontWeight="Bold"
+                                       Foreground="#e94560"
+                                       HorizontalAlignment="Center"
+                                       Margin="0 5 0 20"/>
+
+                            <StackPanel Spacing="12">
+                                <StackPanel Orientation="Horizontal" Spacing="12">
+                                    <Image Source="/Assets/pv.png" Width="28" Height="28" VerticalAlignment="Center"/>
+                                    <TextBlock Text="Points de vie :" Foreground="#a8dadc" FontSize="17" VerticalAlignment="Center" Width="200"/>
+                                    <TextBlock x:Name="StatPV" Foreground="White" FontWeight="Bold" FontSize="17" VerticalAlignment="Center"/>
+                                </StackPanel>
+                                
+                                <StackPanel Orientation="Horizontal" Spacing="12">
+                                    <Image Source="/Assets/ad.png" Width="28" Height="28" VerticalAlignment="Center"/>
+                                    <TextBlock Text="Dégâts d'attaque :" Foreground="#a8dadc" FontSize="17" VerticalAlignment="Center" Width="200"/>
+                                    <TextBlock x:Name="StatAD" Foreground="White" FontWeight="Bold" FontSize="17" VerticalAlignment="Center"/>
+                                </StackPanel>
+                                
+                                <StackPanel Orientation="Horizontal" Spacing="12">
+                                    <Image Source="/Assets/ap.png" Width="28" Height="28" VerticalAlignment="Center"/>
+                                    <TextBlock Text="Puissance magique :" Foreground="#a8dadc" FontSize="17" VerticalAlignment="Center" Width="200"/>
+                                    <TextBlock x:Name="StatAP" Foreground="White" FontWeight="Bold" FontSize="17" VerticalAlignment="Center"/>
+                                </StackPanel>
+                                
+                                <StackPanel Orientation="Horizontal" Spacing="12">
+                                    <Image Source="/Assets/as.png" Width="28" Height="28" VerticalAlignment="Center"/>
+                                    <TextBlock Text="Vitesse d'attaque :" Foreground="#a8dadc" FontSize="17" VerticalAlignment="Center" Width="200"/>
+                                    <TextBlock x:Name="StatAS" Foreground="White" FontWeight="Bold" FontSize="17" VerticalAlignment="Center"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal" Spacing="12">
+                                    <Image Source="/Assets/armure.png" Width="28" Height="28" VerticalAlignment="Center"/>
+                                    <TextBlock Text="Armure :" Foreground="#a8dadc" FontSize="17" VerticalAlignment="Center" Width="200"/>
+                                    <TextBlock x:Name="StatArmor" Foreground="White" FontWeight="Bold" FontSize="17" VerticalAlignment="Center"/>
+                                </StackPanel>
+                                
+                                <StackPanel Orientation="Horizontal" Spacing="12">
+                                    <Image Source="/Assets/rm.png" Width="28" Height="28" VerticalAlignment="Center"/>
+                                    <TextBlock Text="Résistance magique :" Foreground="#a8dadc" FontSize="17" VerticalAlignment="Center" Width="200"/>
+                                    <TextBlock x:Name="StatRM" Foreground="White" FontWeight="Bold" FontSize="17" VerticalAlignment="Center"/>
+                                </StackPanel>
+                                
+                                <StackPanel Orientation="Horizontal" Spacing="12">
+                                    <Image Source="/Assets/ms.png" Width="28" Height="28" VerticalAlignment="Center"/>
+                                    <TextBlock Text="Vitesse de déplacement :" Foreground="#a8dadc" FontSize="17" VerticalAlignment="Center" Width="200"/>
+                                    <TextBlock x:Name="StatMS" Foreground="White" FontWeight="Bold" FontSize="17" VerticalAlignment="Center"/>
+                                </StackPanel>
+                                
+                                <StackPanel Orientation="Horizontal" Spacing="12">
+                                    <Image Source="/Assets/regen.png" Width="28" Height="28" VerticalAlignment="Center"/>
+                                    <TextBlock Text="Régénération :" Foreground="#a8dadc" FontSize="17" VerticalAlignment="Center" Width="200"/>
+                                    <TextBlock x:Name="StatRegen" Foreground="White" FontWeight="Bold" FontSize="17" VerticalAlignment="Center"/>
+                                </StackPanel>
+                            </StackPanel>
+
+                            <Border Height="2" Background="#0f3460" Margin="0 20 0 15"/>
+
+                            <StackPanel>
+                                <TextBlock Text="Compétence unique"
+                                           FontSize="19" FontWeight="Bold"
+                                           Foreground="#e94560"
+                                           HorizontalAlignment="Center"
+                                           Margin="0 0 0 12"/>
+
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 0 0 10">
+                                    <TextBlock x:Name="AbilityName" 
+                                               FontSize="17" 
+                                               FontWeight="Bold" 
+                                               Foreground="#a8dadc"/>
+                                    <TextBlock Text=" - " 
+                                               FontSize="17" 
+                                               Foreground="#666" 
+                                               Margin="5 0"/>
+                                    <TextBlock x:Name="AbilityType" 
+                                               FontSize="15" 
+                                               Foreground="#666" 
+                                               FontStyle="Italic"/>
+                                </StackPanel>
+
+                                <Border Background="#0f3460" 
+                                        CornerRadius="6" 
+                                        Padding="15"
+                                        Margin="0 0 0 10">
+                                    <TextBlock x:Name="AbilityDescription" 
+                                               FontSize="15" 
+                                               Foreground="White" 
+                                               TextWrapping="Wrap"
+                                               LineHeight="22"/>
+                                </Border>
+                            </StackPanel>
+
+                            <Button Content="Choisir ce champion"
+                                    Click="OnSelectChampionClick"
+                                    FontSize="18"
+                                    FontWeight="Bold"
+                                    Padding="0 12"
+                                    Background="#e94560"
+                                    Foreground="White"
+                                    BorderThickness="0"
+                                    CornerRadius="6"
+                                    HorizontalAlignment="Stretch"
+                                    HorizontalContentAlignment="Center"
+                                    Margin="0 18 0 0"
+                                    Cursor="Hand">
+                                <Button.Styles>
+                                    <Style Selector="Button:pointerover /template/ ContentPresenter">
+                                        <Setter Property="Background" Value="#d63447"/>
+                                    </Style>
+                                </Button.Styles>
+                            </Button>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+            </Grid>
+        </Grid>
+
+        <Grid x:Name="Page3" IsVisible="False">
+            <Grid.Background>
+                <ImageBrush Source="/Assets/fond.jpg" Stretch="UniformToFill" Opacity="0.3"/>
+            </Grid.Background>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" MaxWidth="1100">
+                <TextBlock Text="Choisissez votre classe"
+                           FontSize="32"
+                           FontWeight="Bold"
+                           Foreground="#e94560"
+                           HorizontalAlignment="Center"
+                           Margin="0 0 0 20"/>
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 0 0 50">
+                    <TextBlock x:Name="SelectedChampionDisplay" 
+                               FontSize="20" 
+                               Foreground="White" 
+                               FontWeight="Bold"/>
+                    <TextBlock Text=" - " 
+                               FontSize="20" 
+                               Foreground="#666" 
+                               Margin="10 0"/>
+                    <TextBlock x:Name="SelectedRaceDisplay" 
+                               FontSize="20" 
+                               Foreground="#a8dadc"/>
+                </StackPanel>
+
+                <Grid RowDefinitions="Auto,Auto" 
+                      ColumnDefinitions="*,*,*" 
+                      HorizontalAlignment="Center"
+                      RowSpacing="25"
+                      ColumnSpacing="25"
+                      MaxWidth="1000">
+                    
+                    <Button x:Name="ClassFighter" Grid.Row="0" Grid.Column="0" Click="OnClassClick" Tag="Combattant"
+                            Background="#16213e" BorderBrush="#0f3460" BorderThickness="2" 
+                            CornerRadius="10" Padding="20" Cursor="Hand" 
+                            Width="300" Height="200">
+                        <Button.Styles>
+                            <Style Selector="Button:pointerover">
+                                <Setter Property="Background" Value="#1e2d4d"/>
+                                <Setter Property="BorderBrush" Value="#e94560"/>
+                            </Style>
+                            <Style Selector="Button:disabled">
+                                <Setter Property="Background" Value="#0d0d0d"/>
+                                <Setter Property="BorderBrush" Value="#333"/>
+                                <Setter Property="Opacity" Value="0.4"/>
+                            </Style>
+                        </Button.Styles>
+                        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="10">
+                            <TextBlock Text="Combattant" 
+                                       FontSize="24" 
+                                       FontWeight="Bold" 
+                                       Foreground="#e94560" 
+                                       HorizontalAlignment="Center"/>
+                            <TextBlock Text="Dégâts &amp; Survie" 
+                                       FontSize="16" 
+                                       Foreground="#a8dadc" 
+                                       HorizontalAlignment="Center"
+                                       Margin="0 5 0 10"/>
+                            <TextBlock Text="+10 AD" 
+                                       FontSize="15" 
+                                       Foreground="White" 
+                                       HorizontalAlignment="Center"/>
+                            <TextBlock Text="+50 PV" 
+                                       FontSize="15" 
+                                       Foreground="White" 
+                                       HorizontalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+
+                    <Button x:Name="ClassMage" Grid.Row="0" Grid.Column="1" Click="OnClassClick" Tag="Mage"
+                            Background="#16213e" BorderBrush="#0f3460" BorderThickness="2" 
+                            CornerRadius="10" Padding="20" Cursor="Hand"
+                            Width="300" Height="200">
+                        <Button.Styles>
+                            <Style Selector="Button:pointerover">
+                                <Setter Property="Background" Value="#1e2d4d"/>
+                                <Setter Property="BorderBrush" Value="#e94560"/>
+                            </Style>
+                            <Style Selector="Button:disabled">
+                                <Setter Property="Background" Value="#0d0d0d"/>
+                                <Setter Property="BorderBrush" Value="#333"/>
+                                <Setter Property="Opacity" Value="0.4"/>
+                            </Style>
+                        </Button.Styles>
+                        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="10">
+                            <TextBlock Text="Mage" 
+                                       FontSize="24" 
+                                       FontWeight="Bold" 
+                                       Foreground="#e94560" 
+                                       HorizontalAlignment="Center"/>
+                            <TextBlock Text="Puissance Magique" 
+                                       FontSize="16" 
+                                       Foreground="#a8dadc" 
+                                       HorizontalAlignment="Center"
+                                       Margin="0 5 0 10"/>
+                            <TextBlock Text="+15 AP" 
+                                       FontSize="15" 
+                                       Foreground="White" 
+                                       HorizontalAlignment="Center"/>
+                            <TextBlock Text="+5% Régén." 
+                                       FontSize="15" 
+                                       Foreground="White" 
+                                       HorizontalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+
+                    <Button x:Name="ClassAssassin" Grid.Row="0" Grid.Column="2" Click="OnClassClick" Tag="Assassin"
+                            Background="#16213e" BorderBrush="#0f3460" BorderThickness="2" 
+                            CornerRadius="10" Padding="20" Cursor="Hand"
+                            Width="300" Height="200">
+                        <Button.Styles>
+                            <Style Selector="Button:pointerover">
+                                <Setter Property="Background" Value="#1e2d4d"/>
+                                <Setter Property="BorderBrush" Value="#e94560"/>
+                            </Style>
+                            <Style Selector="Button:disabled">
+                                <Setter Property="Background" Value="#0d0d0d"/>
+                                <Setter Property="BorderBrush" Value="#333"/>
+                                <Setter Property="Opacity" Value="0.4"/>
+                            </Style>
+                        </Button.Styles>
+                        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="10">
+                            <TextBlock Text="Assassin" 
+                                       FontSize="24" 
+                                       FontWeight="Bold" 
+                                       Foreground="#e94560" 
+                                       HorizontalAlignment="Center"/>
+                            <TextBlock Text="Mobilité &amp; Burst" 
+                                       FontSize="16" 
+                                       Foreground="#a8dadc" 
+                                       HorizontalAlignment="Center"
+                                       Margin="0 5 0 10"/>
+                            <TextBlock Text="+10 AD" 
+                                       FontSize="15" 
+                                       Foreground="White" 
+                                       HorizontalAlignment="Center"/>
+                            <TextBlock Text="+15 Vit. Dépl." 
+                                       FontSize="15" 
+                                       Foreground="White" 
+                                       HorizontalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+
+                    <Button x:Name="ClassTank" Grid.Row="1" Grid.Column="0" Click="OnClassClick" Tag="Tank"
+                            Background="#16213e" BorderBrush="#0f3460" BorderThickness="2" 
+                            CornerRadius="10" Padding="20" Cursor="Hand"
+                            Width="300" Height="200">
+                        <Button.Styles>
+                            <Style Selector="Button:pointerover">
+                                <Setter Property="Background" Value="#1e2d4d"/>
+                                <Setter Property="BorderBrush" Value="#e94560"/>
+                            </Style>
+                            <Style Selector="Button:disabled">
+                                <Setter Property="Background" Value="#0d0d0d"/>
+                                <Setter Property="BorderBrush" Value="#333"/>
+                                <Setter Property="Opacity" Value="0.4"/>
+                            </Style>
+                        </Button.Styles>
+                        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="10">
+                            <TextBlock Text="Tank" 
+                                       FontSize="24" 
+                                       FontWeight="Bold" 
+                                       Foreground="#e94560" 
+                                       HorizontalAlignment="Center"/>
+                            <TextBlock Text="Défense Pure" 
+                                       FontSize="16" 
+                                       Foreground="#a8dadc" 
+                                       HorizontalAlignment="Center"
+                                       Margin="0 5 0 10"/>
+                            <TextBlock Text="+15 Armure" 
+                                       FontSize="15" 
+                                       Foreground="White" 
+                                       HorizontalAlignment="Center"/>
+                            <TextBlock Text="+100 PV" 
+                                       FontSize="15" 
+                                       Foreground="White" 
+                                       HorizontalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+
+                    <Button x:Name="ClassSupport" Grid.Row="1" Grid.Column="1" Click="OnClassClick" Tag="Support"
+                            Background="#16213e" BorderBrush="#0f3460" BorderThickness="2" 
+                            CornerRadius="10" Padding="20" Cursor="Hand"
+                            Width="300" Height="200">
+                        <Button.Styles>
+                            <Style Selector="Button:pointerover">
+                                <Setter Property="Background" Value="#1e2d4d"/>
+                                <Setter Property="BorderBrush" Value="#e94560"/>
+                            </Style>
+                            <Style Selector="Button:disabled">
+                                <Setter Property="Background" Value="#0d0d0d"/>
+                                <Setter Property="BorderBrush" Value="#333"/>
+                                <Setter Property="Opacity" Value="0.4"/>
+                            </Style>
+                        </Button.Styles>
+                        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="10">
+                            <TextBlock Text="Support" 
+                                       FontSize="24" 
+                                       FontWeight="Bold" 
+                                       Foreground="#e94560" 
+                                       HorizontalAlignment="Center"/>
+                            <TextBlock Text="Utilitaire &amp; Soin" 
+                                       FontSize="16" 
+                                       Foreground="#a8dadc" 
+                                       HorizontalAlignment="Center"
+                                       Margin="0 5 0 10"/>
+                            <TextBlock Text="+10 Rés. Mag." 
+                                       FontSize="15" 
+                                       Foreground="White" 
+                                       HorizontalAlignment="Center"/>
+                            <TextBlock Text="+5 Régén. PV" 
+                                       FontSize="15" 
+                                       Foreground="White" 
+                                       HorizontalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+                </Grid>
+
+                <Button Content="← Retour au choix du champion"
+                        Click="OnBackToChampionClick"
+                        FontSize="16"
+                        FontWeight="SemiBold"
+                        Padding="20 12"
+                        Background="Transparent"
+                        Foreground="#a8dadc"
+                        BorderBrush="#0f3460"
+                        BorderThickness="2"
+                        CornerRadius="6"
+                        HorizontalAlignment="Center"
+                        Margin="0 40 0 0"
+                        Cursor="Hand">
+                    <Button.Styles>
+                        <Style Selector="Button:pointerover">
+                            <Setter Property="Background" Value="#16213e"/>
+                            <Setter Property="BorderBrush" Value="#e94560"/>
+                        </Style>
+                    </Button.Styles>
+                </Button>
+            </StackPanel>
+
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="250"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <Border Grid.Row="0" Background="#0f3460" CornerRadius="10 10 0 0" 
+                        Margin="40 40 40 0" ClipToBounds="True">
+                    <Grid>
+                        <Image x:Name="ClassChampionBanner" Stretch="UniformToFill"/>
+
+                        <StackPanel VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0 0 0 20">
+                            <TextBlock x:Name="ClassChampionName" 
+                                       FontSize="32" 
+                                       FontWeight="Bold" 
+                                       Foreground="White" 
+                                       HorizontalAlignment="Center"
+                                       TextAlignment="Center">
+                                <TextBlock.Effect>
+                                    <DropShadowEffect BlurRadius="10" OffsetX="0" OffsetY="2" Color="Black" Opacity="0.8"/>
+                                </TextBlock.Effect>
+                            </TextBlock>
+                            <TextBlock x:Name="ClassChampionRace" 
+                                       FontSize="18" 
+                                       Foreground="#a8dadc" 
+                                       HorizontalAlignment="Center"
+                                       TextAlignment="Center"
+                                       Margin="0 5 0 0">
+                                <TextBlock.Effect>
+                                    <DropShadowEffect BlurRadius="10" OffsetX="0" OffsetY="2" Color="Black" Opacity="0.8"/>
+                                </TextBlock.Effect>
+                            </TextBlock>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+
+                <Border Grid.Row="1" Background="#16213e" Margin="40 0 40 40" 
+                        CornerRadius="0 0 10 10" BorderBrush="#0f3460" BorderThickness="2">
+                    <Grid>
+                        <TextBlock x:Name="ClassDefaultMessage"
+                                   Text="Sélectionnez une classe pour voir les bonus"
+                                   FontSize="16"
+                                   Foreground="#666"
+                                   TextWrapping="Wrap"
+                                   TextAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Center"
+                                   Margin="20"/>
+                        
+                        <StackPanel x:Name="ClassStatsPanel" Margin="30 20 30 20" IsVisible="False">
+                            <TextBlock Text="Statistiques avec bonus"
+                                       FontSize="22" FontWeight="Bold"
+                                       Foreground="#e94560"
+                                       HorizontalAlignment="Center"
+                                       Margin="0 5 0 20"/>
+
+                            <StackPanel Spacing="12">
+                                <StackPanel Orientation="Horizontal" Spacing="8">
+                                    <Image Source="/Assets/pv.png" Width="28" Height="28" VerticalAlignment="Center"/>
+                                    <TextBlock Text="Points de vie :" Foreground="#a8dadc" FontSize="17" VerticalAlignment="Center" Width="180"/>
+                                    <TextBlock x:Name="ClassStatPV" Foreground="White" FontWeight="Bold" FontSize="17" VerticalAlignment="Center"/>
+                                    <TextBlock x:Name="ClassBonusPV" Foreground="#4ecca3" FontWeight="Bold" FontSize="17" VerticalAlignment="Center" Margin="5 0 0 0"/>
+                                </StackPanel>
+                                
+                                <StackPanel Orientation="Horizontal" Spacing="8">
+                                    <Image Source="/Assets/ad.png" Width="28" Height="28" VerticalAlignment="Center"/>
+                                    <TextBlock Text="Dégâts d'attaque :" Foreground="#a8dadc" FontSize="17" VerticalAlignment="Center" Width="180"/>
+                                    <TextBlock x:Name="ClassStatAD" Foreground="White" FontWeight="Bold" FontSize="17" VerticalAlignment="Center"/>
+                                    <TextBlock x:Name="ClassBonusAD" Foreground="#4ecca3" FontWeight="Bold" FontSize="17" VerticalAlignment="Center" Margin="5 0 0 0"/>
+                                </StackPanel>
+                                
+                                <StackPanel Orientation="Horizontal" Spacing="8">
+                                    <Image Source="/Assets/ap.png" Width="28" Height="28" VerticalAlignment="Center"/>
+                                    <TextBlock Text="Puissance magique :" Foreground="#a8dadc" FontSize="17" VerticalAlignment="Center" Width="180"/>
+                                    <TextBlock x:Name="ClassStatAP" Foreground="White" FontWeight="Bold" FontSize="17" VerticalAlignment="Center"/>
+                                    <TextBlock x:Name="ClassBonusAP" Foreground="#4ecca3" FontWeight="Bold" FontSize="17" VerticalAlignment="Center" Margin="5 0 0 0"/>
+                                </StackPanel>
+                                
+                                <StackPanel Orientation="Horizontal" Spacing="8">
+                                    <Image Source="/Assets/as.png" Width="28" Height="28" VerticalAlignment="Center"/>
+                                    <TextBlock Text="Vitesse d'attaque :" Foreground="#a8dadc" FontSize="17" VerticalAlignment="Center" Width="180"/>
+                                    <TextBlock x:Name="ClassStatAS" Foreground="White" FontWeight="Bold" FontSize="17" VerticalAlignment="Center"/>
+                                    <TextBlock x:Name="ClassBonusAS" Foreground="#4ecca3" FontWeight="Bold" FontSize="17" VerticalAlignment="Center" Margin="5 0 0 0"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal" Spacing="8">
+                                    <Image Source="/Assets/armure.png" Width="28" Height="28" VerticalAlignment="Center"/>
+                                    <TextBlock Text="Armure :" Foreground="#a8dadc" FontSize="17" VerticalAlignment="Center" Width="180"/>
+                                    <TextBlock x:Name="ClassStatArmor" Foreground="White" FontWeight="Bold" FontSize="17" VerticalAlignment="Center"/>
+                                    <TextBlock x:Name="ClassBonusArmor" Foreground="#4ecca3" FontWeight="Bold" FontSize="17" VerticalAlignment="Center" Margin="5 0 0 0"/>
+                                </StackPanel>
+                                
+                                <StackPanel Orientation="Horizontal" Spacing="8">
+                                    <Image Source="/Assets/rm.png" Width="28" Height="28" VerticalAlignment="Center"/>
+                                    <TextBlock Text="Résistance magique :" Foreground="#a8dadc" FontSize="17" VerticalAlignment="Center" Width="180"/>
+                                    <TextBlock x:Name="ClassStatRM" Foreground="White" FontWeight="Bold" FontSize="17" VerticalAlignment="Center"/>
+                                    <TextBlock x:Name="ClassBonusRM" Foreground="#4ecca3" FontWeight="Bold" FontSize="17" VerticalAlignment="Center" Margin="5 0 0 0"/>
+                                </StackPanel>
+                                
+                                <StackPanel Orientation="Horizontal" Spacing="8">
+                                    <Image Source="/Assets/ms.png" Width="28" Height="28" VerticalAlignment="Center"/>
+                                    <TextBlock Text="Vitesse de déplacement :" Foreground="#a8dadc" FontSize="17" VerticalAlignment="Center" Width="180"/>
+                                    <TextBlock x:Name="ClassStatMS" Foreground="White" FontWeight="Bold" FontSize="17" VerticalAlignment="Center"/>
+                                    <TextBlock x:Name="ClassBonusMS" Foreground="#4ecca3" FontWeight="Bold" FontSize="17" VerticalAlignment="Center" Margin="5 0 0 0"/>
+                                </StackPanel>
+                                
+                                <StackPanel Orientation="Horizontal" Spacing="8">
+                                    <Image Source="/Assets/regen.png" Width="28" Height="28" VerticalAlignment="Center"/>
+                                    <TextBlock Text="Régénération :" Foreground="#a8dadc" FontSize="17" VerticalAlignment="Center" Width="180"/>
+                                    <TextBlock x:Name="ClassStatRegen" Foreground="White" FontWeight="Bold" FontSize="17" VerticalAlignment="Center"/>
+                                    <TextBlock x:Name="ClassBonusRegen" Foreground="#4ecca3" FontWeight="Bold" FontSize="17" VerticalAlignment="Center" Margin="5 0 0 0"/>
+                                </StackPanel>
+                            </StackPanel>
+
+                            <Button Content="Continuer vers les items"
+                                    Click="OnContinueToItemsClick"
+                                    FontSize="18"
+                                    FontWeight="Bold"
+                                    Padding="0 12"
+                                    Background="#e94560"
+                                    Foreground="White"
+                                    BorderThickness="0"
+                                    CornerRadius="6"
+                                    HorizontalAlignment="Stretch"
+                                    HorizontalContentAlignment="Center"
+                                    Margin="0 30 0 0"
+                                    Cursor="Hand">
+                                <Button.Styles>
+                                    <Style Selector="Button:pointerover /template/ ContentPresenter">
+                                        <Setter Property="Background" Value="#d63447"/>
+                                    </Style>
+                                </Button.Styles>
+                            </Button>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+            </Grid>
+        </Grid>
+
+        <Grid x:Name="Page4" IsVisible="False">
+            <Grid.Background>
+                <ImageBrush Source="/Assets/fond.jpg" Stretch="UniformToFill" Opacity="0.3"/>
+            </Grid.Background>
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <StackPanel Margin="50" MaxWidth="1400">
+                    <TextBlock Text="Votre Inventaire"
+                               FontSize="36"
+                               FontWeight="Bold"
+                               Foreground="#e94560"
+                               HorizontalAlignment="Center"
+                               Margin="0 20 0 40"/>
+
+                    <StackPanel x:Name="ItemsLoadingPanel" 
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Spacing="20"
+                                Margin="0 100 0 0">
+                        <TextBlock Text="⏳"
+                                   FontSize="48"
+                                   HorizontalAlignment="Center"/>
+                        <TextBlock Text="Chargement des items..."
+                                   FontSize="20"
+                                   Foreground="White"
+                                   HorizontalAlignment="Center"/>
+                    </StackPanel>
+
+                    <StackPanel x:Name="ItemsDisplayPanel" IsVisible="False">
+                        <WrapPanel x:Name="ItemsContainer" 
+                                   HorizontalAlignment="Center"
+                                   Orientation="Horizontal"/>
+
+                        <Button Content="Voir le résumé final"
+                                Click="OnViewSummaryClick"
+                                FontSize="20"
+                                FontWeight="Bold"
+                                Padding="30 15"
+                                Background="#e94560"
+                                Foreground="White"
+                                BorderThickness="0"
+                                CornerRadius="8"
+                                HorizontalAlignment="Center"
+                                Margin="0 50 0 30"
+                                Cursor="Hand">
+                            <Button.Styles>
+                                <Style Selector="Button:pointerover /template/ ContentPresenter">
+                                    <Setter Property="Background" Value="#d63447"/>
+                                </Style>
+                            </Button.Styles>
+                        </Button>
+                    </StackPanel>
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
+
+        <Grid x:Name="Page5" IsVisible="False">
+            <Grid.Background>
+                <ImageBrush Source="/Assets/fond.jpg" Stretch="UniformToFill" Opacity="0.3"/>
+            </Grid.Background>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Column="0" Margin="40" VerticalAlignment="Center">
+                <Image x:Name="SummaryChampion3D" 
+                       Stretch="Uniform"
+                       MaxHeight="400"
+                       HorizontalAlignment="Center"
+                       Margin="0 0 0 30"/>
+                
+                <Border Background="#16213e"
+                        BorderBrush="#0f3460"
+                        BorderThickness="2"
+                        CornerRadius="10"
+                        Padding="20">
+                    <StackPanel Spacing="10">
+                        <TextBlock Text="Compétence unique"
+                                   FontSize="20"
+                                   FontWeight="Bold"
+                                   Foreground="#e94560"
+                                   HorizontalAlignment="Center"/>
+                        
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 0 0 10">
+                            <TextBlock x:Name="SummaryAbilityName" 
+                                       FontSize="16" 
+                                       FontWeight="Bold" 
+                                       Foreground="#a8dadc"/>
+                            <TextBlock Text=" - " 
+                                       FontSize="16" 
+                                       Foreground="#666" 
+                                       Margin="5 0"/>
+                            <TextBlock x:Name="SummaryAbilityType" 
+                                       FontSize="14" 
+                                       Foreground="#666" 
+                                       FontStyle="Italic"/>
+                        </StackPanel>
+
+                        <Border Background="#0f3460" 
+                                CornerRadius="6" 
+                                Padding="15">
+                            <TextBlock x:Name="SummaryAbilityDescription" 
+                                       FontSize="14" 
+                                       Foreground="White" 
+                                       TextWrapping="Wrap"
+                                       LineHeight="20"/>
+                        </Border>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+
+            <StackPanel Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <TextBlock x:Name="SummaryPlayerName"
+                           FontSize="48"
+                           FontWeight="Bold"
+                           Foreground="#e94560"
+                           HorizontalAlignment="Center"
+                           Margin="0 0 0 60"/>
+
+                <Border Background="#16213e"
+                        BorderBrush="#0f3460"
+                        BorderThickness="2"
+                        CornerRadius="10"
+                        Padding="30">
+                    <StackPanel>
+                        <TextBlock Text="Inventaire"
+                                   FontSize="24"
+                                   FontWeight="Bold"
+                                   Foreground="#e94560"
+                                   HorizontalAlignment="Center"
+                                   Margin="0 0 0 20"/>
+                        
+                        <Grid x:Name="SummaryItemsGrid"
+                              RowDefinitions="Auto,Auto"
+                              ColumnDefinitions="Auto,Auto,Auto"
+                              HorizontalAlignment="Center">
+                        </Grid>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+
+            <Border Grid.Column="2" 
+                    Background="#16213e" 
+                    Margin="40"
+                    CornerRadius="10" 
+                    BorderBrush="#0f3460" 
+                    BorderThickness="2"
+                    Padding="30">
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <StackPanel>
+                        <TextBlock Text="Statistiques finales"
+                                   FontSize="22" FontWeight="Bold"
+                                   Foreground="#e94560"
+                                   HorizontalAlignment="Center"
+                                   Margin="0 5 0 20"/>
+
+                        <StackPanel Spacing="12">
+                            <StackPanel Orientation="Horizontal" Spacing="8">
+                                <Image Source="/Assets/pv.png" Width="24" Height="24" VerticalAlignment="Center"/>
+                                <TextBlock Text="Points de vie" Foreground="#a8dadc" FontSize="15" VerticalAlignment="Center" Width="180"/>
+                                <TextBlock x:Name="SummaryStatPV" Foreground="White" FontWeight="Bold" FontSize="15" VerticalAlignment="Center"/>
+                            </StackPanel>
+                            
+                            <StackPanel Orientation="Horizontal" Spacing="8">
+                                <Image Source="/Assets/ad.png" Width="24" Height="24" VerticalAlignment="Center"/>
+                                <TextBlock Text="Dégâts d'attaque" Foreground="#a8dadc" FontSize="15" VerticalAlignment="Center" Width="180"/>
+                                <TextBlock x:Name="SummaryStatAD" Foreground="White" FontWeight="Bold" FontSize="15" VerticalAlignment="Center"/>
+                            </StackPanel>
+                            
+                            <StackPanel Orientation="Horizontal" Spacing="8">
+                                <Image Source="/Assets/ap.png" Width="24" Height="24" VerticalAlignment="Center"/>
+                                <TextBlock Text="Puissance magique" Foreground="#a8dadc" FontSize="15" VerticalAlignment="Center" Width="180"/>
+                                <TextBlock x:Name="SummaryStatAP" Foreground="White" FontWeight="Bold" FontSize="15" VerticalAlignment="Center"/>
+                            </StackPanel>
+                            
+                            <StackPanel Orientation="Horizontal" Spacing="8">
+                                <Image Source="/Assets/as.png" Width="24" Height="24" VerticalAlignment="Center"/>
+                                <TextBlock Text="Vitesse d'attaque" Foreground="#a8dadc" FontSize="15" VerticalAlignment="Center" Width="180"/>
+                                <TextBlock x:Name="SummaryStatAS" Foreground="White" FontWeight="Bold" FontSize="15" VerticalAlignment="Center"/>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal" Spacing="8">
+                                <Image Source="/Assets/armure.png" Width="24" Height="24" VerticalAlignment="Center"/>
+                                <TextBlock Text="Armure" Foreground="#a8dadc" FontSize="15" VerticalAlignment="Center" Width="180"/>
+                                <TextBlock x:Name="SummaryStatArmor" Foreground="White" FontWeight="Bold" FontSize="15" VerticalAlignment="Center"/>
+                            </StackPanel>
+                            
+                            <StackPanel Orientation="Horizontal" Spacing="8">
+                                <Image Source="/Assets/rm.png" Width="24" Height="24" VerticalAlignment="Center"/>
+                                <TextBlock Text="Résistance magique" Foreground="#a8dadc" FontSize="15" VerticalAlignment="Center" Width="180"/>
+                                <TextBlock x:Name="SummaryStatRM" Foreground="White" FontWeight="Bold" FontSize="15" VerticalAlignment="Center"/>
+                            </StackPanel>
+                            
+                            <StackPanel Orientation="Horizontal" Spacing="8">
+                                <Image Source="/Assets/ms.png" Width="24" Height="24" VerticalAlignment="Center"/>
+                                <TextBlock Text="Vitesse de déplacement" Foreground="#a8dadc" FontSize="15" VerticalAlignment="Center" Width="180"/>
+                                <TextBlock x:Name="SummaryStatMS" Foreground="White" FontWeight="Bold" FontSize="15" VerticalAlignment="Center"/>
+                            </StackPanel>
+                            
+                            <StackPanel Orientation="Horizontal" Spacing="8">
+                                <Image Source="/Assets/regen.png" Width="24" Height="24" VerticalAlignment="Center"/>
+                                <TextBlock Text="Régénération PV" Foreground="#a8dadc" FontSize="15" VerticalAlignment="Center" Width="180"/>
+                                <TextBlock x:Name="SummaryStatRegen" Foreground="White" FontWeight="Bold" FontSize="15" VerticalAlignment="Center"/>
+                            </StackPanel>
+                            
+                            <StackPanel Orientation="Horizontal" Spacing="8">
+                                <Image Source="/Assets/penmag.png" Width="24" Height="24" VerticalAlignment="Center"/>
+                                <TextBlock Text="Pénétration magique" Foreground="#a8dadc" FontSize="15" VerticalAlignment="Center" Width="180"/>
+                                <TextBlock x:Name="SummaryStatMagicPen" Foreground="White" FontWeight="Bold" FontSize="15" VerticalAlignment="Center"/>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal" Spacing="8">
+                                <Image Source="/Assets/letha.png" Width="24" Height="24" VerticalAlignment="Center"/>
+                                <TextBlock Text="Pénétration d'armure" Foreground="#a8dadc" FontSize="15" VerticalAlignment="Center" Width="180"/>
+                                <TextBlock x:Name="SummaryStatLethality" Foreground="White" FontWeight="Bold" FontSize="15" VerticalAlignment="Center"/>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal" Spacing="8">
+                                <Image Source="/Assets/tenacity.png" Width="24" Height="24" VerticalAlignment="Center"/>
+                                <TextBlock Text="Ténacité" Foreground="#a8dadc" FontSize="15" VerticalAlignment="Center" Width="180"/>
+                                <TextBlock x:Name="SummaryStatTenacity" Foreground="White" FontWeight="Bold" FontSize="15" VerticalAlignment="Center"/>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal" Spacing="8">
+                                <Image Source="/Assets/regenpower.png" Width="24" Height="24" VerticalAlignment="Center"/>
+                                <TextBlock Text="Efficacité soins/boucliers" Foreground="#a8dadc" FontSize="15" VerticalAlignment="Center" Width="180"/>
+                                <TextBlock x:Name="SummaryStatHealShieldPower" Foreground="White" FontWeight="Bold" FontSize="15" VerticalAlignment="Center"/>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal" Spacing="8">
+                                <Image Source="/Assets/volvie.png" Width="24" Height="24" VerticalAlignment="Center"/>
+                                <TextBlock Text="Vol de vie" Foreground="#a8dadc" FontSize="15" VerticalAlignment="Center" Width="180"/>
+                                <TextBlock x:Name="SummaryStatLifesteal" Foreground="White" FontWeight="Bold" FontSize="15" VerticalAlignment="Center"/>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal" Spacing="8">
+                                <Image Source="/Assets/ability.png" Width="24" Height="24" VerticalAlignment="Center"/>
+                                <TextBlock Text="Accélération de compétence" Foreground="#a8dadc" FontSize="15" VerticalAlignment="Center" Width="180"/>
+                                <TextBlock x:Name="SummaryStatAbilityHaste" Foreground="White" FontWeight="Bold" FontSize="15" VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </StackPanel>
+
+                        <Button Content="Créer un nouveau champion"
+                                Click="OnRestartClick"
+                                FontSize="16"
+                                FontWeight="Bold"
+                                Padding="20 12"
+                                Background="#e94560"
+                                Foreground="White"
+                                BorderThickness="0"
+                                CornerRadius="6"
+                                HorizontalAlignment="Stretch"
+                                HorizontalContentAlignment="Center"
+                                Margin="0 30 0 0"
+                                Cursor="Hand">
+                            <Button.Styles>
+                                <Style Selector="Button:pointerover /template/ ContentPresenter">
+                                    <Setter Property="Background" Value="#d63447"/>
+                                </Style>
+                            </Button.Styles>
+                        </Button>
+                    </StackPanel>
+                </ScrollViewer>
+            </Border>
+        </Grid>
+    </Grid>
+</Window>
